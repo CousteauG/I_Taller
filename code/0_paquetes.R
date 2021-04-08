@@ -1,0 +1,7 @@
+install.packages("raster")
+install.packages("maps")
+install.packages("mapdata")
+install.packages("sdmpredictors")
+install.packages("rerddap")
+install.packages("dplyr")
+install.packages("ncdf4")
