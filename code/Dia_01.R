@@ -110,6 +110,7 @@ altitud
 
 
 # Descarga de clima futuro ------------------------------------------------
+# Coupled Model Intercomparison Project (CMIP) 
 # climate <- raster::getData(name = "CMIP5",  model = "BC", rcp = 26, year = 50, var = "bio", res = 2.5, path = "data/worldclim/")
 # climate
 
