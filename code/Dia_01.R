@@ -23,7 +23,7 @@ elevation
 plot(elevation)
 
 # Seleccionar un área particular
-getData('ISO3')
+getData('ISO3') #contiene los códigos de los países (ID)
 peru <- raster::getData("GADM", country = "PER", level = 0)
 peru
 plot(peru)
