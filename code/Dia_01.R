@@ -30,11 +30,13 @@ plot(peru)
 
 # crop
 elevation2 <- raster::crop(x = elevation, y = extent(peru))
+elevation2
 plot(elevation2)
 plot(peru, add = TRUE, lwd = 2)
 
 # mask
 elevation3 <- raster::mask(x = elevation2, mask = peru)
+elevation3
 plot(elevation3)
 plot(peru, add = TRUE, lwd = 2)
 
@@ -50,6 +52,7 @@ plot(tmean)
 tmean[] <- tmean[]/10
 tmean
 plot(tmean)
+values(tmean)/10
 
 enero <- tmean$tmean1
 plot(enero)
@@ -57,7 +60,7 @@ plot(enero)
 
 # Caso particular de la resolución mas fina (30 s) ------------------------
 prec <- raster::getData(name = 'worldclim', var = 'prec', res = 0.5, 
-                            lon = -90, lat = -20, path = "data/worldclim/")
+                        lon = -90, lat = -20, path = "data/worldclim/")
 prec
 plot(prec$prec1_33)
 
