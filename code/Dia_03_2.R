@@ -10,6 +10,7 @@ library(rerddap)
 library(dplyr)
 library(ncdf4)
 library(ggplot2)
+library(splancs)
 
 # Funciones de ayuda:
 source('code/aux_functions.R')
@@ -38,7 +39,7 @@ selvar = matrix(getValues(new_climate), ncol = length(lon),
                 nrow = length(lat), byrow = TRUE)
 
 # Definir el area de estudio:
-savePol = locator(6)
+savePol = locator(8)
 base_polygon = data.frame(x = savePol$x, y = savePol$y)
 
 # Ver el area de estudio definida por usuario:
@@ -49,7 +50,8 @@ lines(c(base_polygon$x, base_polygon$x[1]),
 outMean = get_variable2(base_polygon = base_polygon, Lon = lon, Lat = lat, Var = selvar)
 
 # Exploramos el objeto:
-outMean
+outMean$Values
+outMean$Positions
 
 # Verificamos si lo ha hecho bien:
 points(outMean$Positions$x, outMean$Positions$y, col = 4, pch = 19, cex = 0.5)
@@ -136,8 +138,9 @@ timetmp = as.POSIXct(time, origin="1970-01-01", tz="GMT")
 time2 = format(timetmp, format = '%Y-%m-%d')
 
 # Plotear variable ambiental:
-image.plot(lon, sort(lat), sst[,order(lat),1])
-points(myData$lon, myData$lat)
+#require(fields)
+#image.plot(lon, sort(lat), sst[,order(lat),1])
+#points(myData$lon, myData$lat)
 
 # Loop en el tiempo:
 myData$var = NA 
@@ -152,6 +155,9 @@ for(i in seq_along(myData$time)){
         myData$var[myData$time == seltime] = varData$var
         
 }
+
+# Verificar base de datos:
+myData
 
 # Verificar:
 ggplot(myData, aes(x = lon, y = lat, color = var)) + 
